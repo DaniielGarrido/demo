@@ -22,7 +22,11 @@ class Booksy extends StatelessWidget {
                 width: 200,
               ),
             ),
-            BookDescription(),
+            BookDescription(
+              "The Hitchhiker's Guide to the Galaxy",
+              "Douglas Adams",
+              "It’s an ordinary Thursday morning for Arthur Dent . . . until his house gets demolished. The Earth follows shortly after to make way for a new hyperspace express route, and Arthur’s best friend has just announced that he’s an alien."
+            ),
             Padding(padding: EdgeInsets.only(bottom: 200)),
             Directionality(
                 textDirection: TextDirection.ltr,
@@ -41,26 +45,31 @@ class Booksy extends StatelessWidget {
 }
 
 class BookDescription extends StatelessWidget {
+  final String tittle;
+  final String author;
+  final String description;
+
+  const BookDescription(this.tittle, this.author, this.description);
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(padding: EdgeInsets.only(top: 40)),
         Text(
-          "The Hitchhiker's Guide to the Galaxy",
+          tittle,
           textDirection: TextDirection.ltr,
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.black87, fontSize: 30),
         ),
         Padding(padding: EdgeInsets.only(top: 15)),
         Text(
-          "Douglas Adams",
+          author,
           textDirection: TextDirection.ltr,
           style: TextStyle(color: Colors.black54, fontSize: 20),
         ),
         Padding(padding: EdgeInsets.only(top: 10)),
         Text(
-          "It’s an ordinary Thursday morning for Arthur Dent . . . until his house gets demolished. The Earth follows shortly after to make way for a new hyperspace express route, and Arthur’s best friend has just announced that he’s an alien.",
+          description,
           textDirection: TextDirection.ltr,
           textAlign: TextAlign.justify,
           style: TextStyle(color: Colors.black54, fontSize: 15),
