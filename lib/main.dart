@@ -23,24 +23,50 @@ class Booksy extends StatelessWidget {
               ),
             ),
             BookDescription(
-              "The Hitchhiker's Guide to the Galaxy",
-              "Douglas Adams",
-              "It’s an ordinary Thursday morning for Arthur Dent . . . until his house gets demolished. The Earth follows shortly after to make way for a new hyperspace express route, and Arthur’s best friend has just announced that he’s an alien."
-            ),
+                "The Hitchhiker's Guide to the Galaxy",
+                "Douglas Adams",
+                "It’s an ordinary Thursday morning for Arthur Dent . . . until his house gets demolished. The Earth follows shortly after to make way for a new hyperspace express route, and Arthur’s best friend has just announced that he’s an alien."),
             Padding(padding: EdgeInsets.only(bottom: 200)),
-            Directionality(
-                textDirection: TextDirection.ltr,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Agregar a Libreria"),
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-                ))
+            AddBookButton(),
           ],
         ),
       ),
       color: Colors.white,
     );
+  }
+}
+
+class AddBookButton extends StatefulWidget {
+  @override
+  _AddBookButton createState() {
+    return _AddBookButton();
+  }
+}
+
+class _AddBookButton extends State<AddBookButton> {
+  bool _isSaved = false;
+  @override
+  Widget build(BuildContext context) {
+    var button = _isSaved ? ElevatedButton(
+        onPressed: _manageBookLibrary,
+        child: Text("Quitar de la Libreria"),
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.blueAccent),
+      ) : ElevatedButton(
+        onPressed: _manageBookLibrary,
+        child: Text("Agregar a Libreria"),
+        style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
+      );
+
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: button
+    );
+  }
+  void _manageBookLibrary(){
+    var newState = !_isSaved;
+    setState(() {
+    _isSaved = newState;
+    });
   }
 }
 
